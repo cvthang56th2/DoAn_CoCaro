@@ -1,0 +1,10 @@
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.exe.config
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.exe
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.pdb
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.csprojResolveAssemblyReference.cache
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.Properties.Resources.resources
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.csproj.GenerateResource.Cache
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.exe
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.frmCoCaro.resources
+C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.frmAbout.resources
