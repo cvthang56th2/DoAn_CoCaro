@@ -35,7 +35,7 @@ namespace CoCaro
 
         private void frmCoCaro_Load(object sender, EventArgs e)
         {
-            lblChuoiChu.Text = "Đây là chuỗi chữ chạy\nlà luật chơi\nChọn chế độ chơi ở\ndưới để bắt đầu chơi!";
+            lblChuoiChu.Text = "Người chơi lần lượt đặt\nquân cờ vào ô trống.\n\nNgười thắng là người\nđầu tiên có được một\nchuỗi liên tục gồm 5\nquân hàng ngang,\nhoặc dọc, hoặc chéo.\n\nChú ý: Nếu bị chặn \n2 đầu sẽ không\nđược tính thắng!\n\nChọn chế độ chơi ở\ndưới để bắt đầu chơi!";
             timerChuChay.Enabled = true;
             
         }
@@ -49,11 +49,6 @@ namespace CoCaro
         {
             caroChess.VeBanCo(grs);
             caroChess.VeLaiQuanCo(grs);
-        }
-
-        private void ẽitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void pnlBanCo_MouseClick(object sender, MouseEventArgs e)
@@ -80,6 +75,8 @@ namespace CoCaro
         private void PvsP(object sender, EventArgs e)
         {
             grs.Clear(pnlBanCo.BackColor);
+            btnPlayerVsPlayer.Enabled = false;
+            btnPlayerVsCom.Enabled = false;
             caroChess.StartPlayerVsPlayer(grs);
             MessageBox.Show("Trận đấu Bắt đầu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -97,16 +94,41 @@ namespace CoCaro
         private void PvsC_Click(object sender, EventArgs e)
         {
             grs.Clear(pnlBanCo.BackColor);
+            btnPlayerVsCom.Enabled = false;
+            btnPlayerVsPlayer.Enabled = false;
             caroChess.StartPlayerVsCom(grs);
             MessageBox.Show("Trận đấu Bắt đầu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnChoiMoi_Click(object sender, EventArgs e)
         {
-            grs.Clear(pnlBanCo.BackColor);
-            caroChess.VeBanCo(grs);
-            caroChess.KhoiTaoMangOCo();
-            caroChess.SanSang = false;
+            if (caroChess.KiemTraChienThang())
+            {
+                grs.Clear(pnlBanCo.BackColor);
+                btnPlayerVsCom.Enabled = true;
+                btnPlayerVsPlayer.Enabled = true;
+                caroChess.VeBanCo(grs);
+                caroChess.KhoiTaoMangOCo();
+                caroChess.SanSang = false;
+            }
+            else
+            {
+                DialogResult dlr = MessageBox.Show("Bạn có chắc muốn Chơi mới không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dlr == DialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    grs.Clear(pnlBanCo.BackColor);
+                    btnPlayerVsCom.Enabled = true;
+                    btnPlayerVsPlayer.Enabled = true;
+                    caroChess.VeBanCo(grs);
+                    caroChess.KhoiTaoMangOCo();
+                    caroChess.SanSang = false;
+                }
+            }
+            
         }
 
         private void frmCoCaro_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,6 +142,11 @@ namespace CoCaro
         {
             frmAbout frm = new frmAbout();
             frm.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -64,7 +64,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(734, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1237, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -107,7 +107,7 @@
             this.ẽitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.ẽitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.ẽitToolStripMenuItem.Text = "Exit";
-            this.ẽitToolStripMenuItem.Click += new System.EventHandler(this.ẽitToolStripMenuItem_Click);
+            this.ẽitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -122,7 +122,7 @@
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
@@ -130,7 +130,7 @@
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
@@ -145,7 +145,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -153,7 +153,7 @@
             // 
             this.btnPlayerVsPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayerVsPlayer.ForeColor = System.Drawing.Color.MediumBlue;
-            this.btnPlayerVsPlayer.Location = new System.Drawing.Point(25, 420);
+            this.btnPlayerVsPlayer.Location = new System.Drawing.Point(25, 427);
             this.btnPlayerVsPlayer.Name = "btnPlayerVsPlayer";
             this.btnPlayerVsPlayer.Size = new System.Drawing.Size(160, 33);
             this.btnPlayerVsPlayer.TabIndex = 3;
@@ -165,7 +165,7 @@
             // 
             this.btnPlayerVsCom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayerVsCom.ForeColor = System.Drawing.Color.MediumBlue;
-            this.btnPlayerVsCom.Location = new System.Drawing.Point(25, 463);
+            this.btnPlayerVsCom.Location = new System.Drawing.Point(25, 470);
             this.btnPlayerVsCom.Name = "btnPlayerVsCom";
             this.btnPlayerVsCom.Size = new System.Drawing.Size(160, 33);
             this.btnPlayerVsCom.TabIndex = 4;
@@ -176,7 +176,7 @@
             // 
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.Color.Blue;
-            this.btnThoat.Location = new System.Drawing.Point(25, 509);
+            this.btnThoat.Location = new System.Drawing.Point(25, 516);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(75, 31);
             this.btnThoat.TabIndex = 5;
@@ -188,7 +188,7 @@
             // 
             this.btnChoiMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChoiMoi.ForeColor = System.Drawing.Color.Blue;
-            this.btnChoiMoi.Location = new System.Drawing.Point(110, 509);
+            this.btnChoiMoi.Location = new System.Drawing.Point(110, 516);
             this.btnChoiMoi.Name = "btnChoiMoi";
             this.btnChoiMoi.Size = new System.Drawing.Size(75, 31);
             this.btnChoiMoi.TabIndex = 6;
@@ -199,9 +199,9 @@
             // pnlBanCo
             // 
             this.pnlBanCo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pnlBanCo.Location = new System.Drawing.Point(220, 39);
+            this.pnlBanCo.Location = new System.Drawing.Point(220, 46);
             this.pnlBanCo.Name = "pnlBanCo";
-            this.pnlBanCo.Size = new System.Drawing.Size(501, 501);
+            this.pnlBanCo.Size = new System.Drawing.Size(1001, 626);
             this.pnlBanCo.TabIndex = 7;
             this.pnlBanCo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBanCo_Paint);
             this.pnlBanCo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlBanCo_MouseClick);
@@ -210,7 +210,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::CoCaro.Properties.Resources.Caro;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 39);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 46);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(160, 149);
             this.pictureBox1.TabIndex = 1;
@@ -227,7 +227,7 @@
             this.pnlChuChay.Controls.Add(this.lblChuoiChu);
             this.pnlChuChay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlChuChay.ForeColor = System.Drawing.Color.Navy;
-            this.pnlChuChay.Location = new System.Drawing.Point(25, 213);
+            this.pnlChuChay.Location = new System.Drawing.Point(25, 220);
             this.pnlChuChay.Name = "pnlChuChay";
             this.pnlChuChay.Size = new System.Drawing.Size(160, 196);
             this.pnlChuChay.TabIndex = 8;
@@ -235,7 +235,7 @@
             // lblChuoiChu
             // 
             this.lblChuoiChu.AutoSize = true;
-            this.lblChuoiChu.Location = new System.Drawing.Point(4, 180);
+            this.lblChuoiChu.Location = new System.Drawing.Point(4, 170);
             this.lblChuoiChu.Name = "lblChuoiChu";
             this.lblChuoiChu.Size = new System.Drawing.Size(0, 17);
             this.lblChuoiChu.TabIndex = 0;
@@ -245,7 +245,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(62, 199);
+            this.label1.Location = new System.Drawing.Point(61, 198);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 9;
@@ -256,7 +256,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(734, 561);
+            this.ClientSize = new System.Drawing.Size(1237, 690);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlChuChay);
             this.Controls.Add(this.pnlBanCo);
@@ -269,6 +269,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1253, 729);
+            this.MinimumSize = new System.Drawing.Size(1253, 729);
             this.Name = "frmCoCaro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";

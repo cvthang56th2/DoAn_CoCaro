@@ -29,13 +29,18 @@ namespace CoCaro
         
         private Stack<OCo> stack_CacNuocDaDi;
         private Stack<OCo> stack_CacNuocUndo;
-        
+
         private int _LuotDi;
+
+        public int LuotDi
+        {
+            get { return _LuotDi; }
+            set { _LuotDi = value; }
+        }
         private int _CheDoChoi;
         private bool _SanSang;
 
         private KETTHUC _KetThuc;
-
 
         public int CheDoChoi
         {
@@ -55,7 +60,7 @@ namespace CoCaro
             sbWhite = new SolidBrush(Color.White);
             sbBlack = new SolidBrush(Color.Black);
             sbBG = new SolidBrush(Color.FromArgb(192, 255, 255));
-            _BanCo = new BanCo(20, 20);
+            _BanCo = new BanCo(25, 40);
             _MangOCo = new OCo[_BanCo.SoDong, _BanCo.SoCot];
             stack_CacNuocDaDi = new Stack<OCo>();
             stack_CacNuocUndo = new Stack<OCo>();
@@ -140,7 +145,7 @@ namespace CoCaro
             VeBanCo(g);
             KhoiDongComputer(g);
         }
-        #endregion
+        
 
         #region Undo - Redo
         public void Undo(Graphics g)
@@ -217,14 +222,22 @@ namespace CoCaro
                 {
                     if (oco.SoHuu == 1)
                         if (_CheDoChoi == 1)
+                        {
                             _KetThuc = KETTHUC.Player1;
+                        }   
                         else
+                        {
                             _KetThuc = KETTHUC.Com;
+                        }      
                     else
                         if (_CheDoChoi == 1)
+                        {
                             _KetThuc = KETTHUC.Player2;
+                        }   
                         else
+                        {
                             _KetThuc = KETTHUC.Player;
+                        }   
                     return true;
                 }
                     
@@ -343,18 +356,18 @@ namespace CoCaro
             long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
-            for (int Dem = 1; Dem < 6 && currDong + Dem < _BanCo.SoDong; Dem++)
+            for (int Dem = 1; Dem < 6 && currDong + Dem < _BanCo.SoDong; Dem++) // Duyệt từ trên xuống, currDong + Dem < _BanCo.SoDong để tránh tràn
             {
-                if (_MangOCo[currDong + Dem, currCot].SoHuu == 1)
+                if (_MangOCo[currDong + Dem, currCot].SoHuu == 1) 
                     SoQuanTa++;
-                else if (_MangOCo[currDong + Dem, currCot].SoHuu == 2)
+                else if (_MangOCo[currDong + Dem, currCot].SoHuu == 2) 
                 {
                     SoQuanDich++;
                     break;
                 } else
                     break;
             }
-            for (int Dem = 1; Dem < 6 && currDong - Dem >= 0; Dem++)
+            for (int Dem = 1; Dem < 6 && currDong - Dem >= 0; Dem++) //Duyệt từ dưới lên, currDong - Dem >= 0 để tránh tràn
             {
                 if (_MangOCo[currDong - Dem, currCot].SoHuu == 1)
                     SoQuanTa++;
@@ -379,7 +392,7 @@ namespace CoCaro
             long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
-            for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot; Dem++)
+            for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot; Dem++) //Duyệt từ trái sang phải
             {
                 if (_MangOCo[currDong, currCot + Dem].SoHuu == 1)
                     SoQuanTa++;
@@ -391,7 +404,7 @@ namespace CoCaro
                 else
                     break;
             }
-            for (int Dem = 1; Dem < 6 && currCot - Dem >= 0; Dem++)
+            for (int Dem = 1; Dem < 6 && currCot - Dem >= 0; Dem++) // Duyệt từ phải sang trái
             {
                 if (_MangOCo[currDong, currCot - Dem].SoHuu == 1)
                     SoQuanTa++;
@@ -416,7 +429,7 @@ namespace CoCaro
             long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
-            for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong - Dem >= 0; Dem++)
+            for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong - Dem >= 0; Dem++) // Duyệt trái dưới lên phải trên
             {
                 if (_MangOCo[currDong - Dem, currCot + Dem].SoHuu == 1)
                     SoQuanTa++;
@@ -428,7 +441,7 @@ namespace CoCaro
                 else
                     break;
             }
-            for (int Dem = 1; Dem < 6 && currCot - Dem >= 0 && currDong + Dem < _BanCo.SoDong; Dem++)
+            for (int Dem = 1; Dem < 6 && currCot - Dem >= 0 && currDong + Dem < _BanCo.SoDong; Dem++) // Duyệt phải trên xuống trái dưới
             {
                 if (_MangOCo[currDong + Dem, currCot - Dem].SoHuu == 1)
                     SoQuanTa++;
@@ -453,7 +466,7 @@ namespace CoCaro
             long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
-            for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong + Dem < _BanCo.SoDong; Dem++)
+            for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong + Dem < _BanCo.SoDong; Dem++) // Duyệt trái trên xuống phải dưới
             {
                 if (_MangOCo[currDong + Dem, currCot + Dem].SoHuu == 1)
                     SoQuanTa++;
@@ -465,7 +478,7 @@ namespace CoCaro
                 else
                     break;
             }
-            for (int Dem = 1; Dem < 6 && currCot - Dem >= 0 && currDong - Dem >= 0; Dem++)
+            for (int Dem = 1; Dem < 6 && currCot - Dem >= 0 && currDong - Dem >= 0; Dem++) // Duyệt phải dưới lên trái trên
             {
                 if (_MangOCo[currDong - Dem, currCot - Dem].SoHuu == 1)
                     SoQuanTa++;
@@ -656,6 +669,7 @@ namespace CoCaro
         }
         #endregion
 
+        #endregion
         #endregion
 
     }
