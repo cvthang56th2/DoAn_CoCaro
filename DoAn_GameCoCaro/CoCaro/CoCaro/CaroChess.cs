@@ -20,8 +20,6 @@ namespace CoCaro
     {
         #region Khai báo biến, constructer, getter và setter
         public static Pen pen;
-        public static SolidBrush sbWhite;
-        public static SolidBrush sbBlack;
         public static SolidBrush sbBG;
         
         private OCo[,] _MangOCo;
@@ -57,8 +55,6 @@ namespace CoCaro
         public CaroChess()
         {
             pen = new Pen(Color.Red);
-            sbWhite = new SolidBrush(Color.White);
-            sbBlack = new SolidBrush(Color.Black);
             sbBG = new SolidBrush(Color.FromArgb(192, 255, 255));
             _BanCo = new BanCo(25, 40);
             _MangOCo = new OCo[_BanCo.SoDong, _BanCo.SoCot];
@@ -96,12 +92,12 @@ namespace CoCaro
             {
                 case 1:
                     _MangOCo[Dong, Cot].SoHuu = 1;
-                    _BanCo.VeQuanCo(g, _MangOCo[Dong, Cot].ViTri, sbBlack);
+                    _BanCo.VeQuanCo(g, _MangOCo[Dong, Cot].ViTri, _LuotDi);
                     _LuotDi = 2;
                     break;
                 case 2:
                     _MangOCo[Dong, Cot].SoHuu = 2;
-                    _BanCo.VeQuanCo(g, _MangOCo[Dong, Cot].ViTri, sbWhite);
+                    _BanCo.VeQuanCo(g, _MangOCo[Dong, Cot].ViTri, _LuotDi);
                     _LuotDi = 1;
                     break;   
                 default:
@@ -118,9 +114,9 @@ namespace CoCaro
             foreach(OCo oCo in stack_CacNuocDaDi)
             {
                 if (oCo.SoHuu == 1)
-                    _BanCo.VeQuanCo(g, oCo.ViTri, sbBlack);
+                    _BanCo.VeQuanCo(g, oCo.ViTri, oCo.SoHuu);
                 else if (oCo.SoHuu == 2)
-                    _BanCo.VeQuanCo(g, oCo.ViTri, sbWhite);
+                    _BanCo.VeQuanCo(g, oCo.ViTri, oCo.SoHuu);
             }
         }
         public void StartPlayerVsPlayer(Graphics g)
@@ -152,15 +148,36 @@ namespace CoCaro
         {
             if (stack_CacNuocDaDi.Count != 0)
             {
-                OCo oco = stack_CacNuocDaDi.Pop();
-                stack_CacNuocUndo.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
-                //_LuotDi = oco.SoHuu;
-                _MangOCo[oco.Dong, oco.Cot].SoHuu = 0;
-                _BanCo.XoaQuanCo(g, oco.ViTri, sbBG);
-                if (_LuotDi == 1)
-                    _LuotDi = 2;
+                if (CheDoChoi == 1)
+                {
+                    OCo oco = stack_CacNuocDaDi.Pop();
+                    stack_CacNuocUndo.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
+                    //_LuotDi = oco.SoHuu;
+                    _MangOCo[oco.Dong, oco.Cot].SoHuu = 0;
+                    _BanCo.XoaQuanCo(g, oco.ViTri, sbBG);
+                    if (_LuotDi == 1)
+                        _LuotDi = 2;
+                    else
+                        _LuotDi = 1;
+                }
                 else
-                    _LuotDi = 1;
+                {
+                    if (stack_CacNuocDaDi.Count > 1)
+                    {
+                        OCo oco = stack_CacNuocDaDi.Pop();
+                        OCo oco1 = stack_CacNuocDaDi.Pop();
+                        stack_CacNuocUndo.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
+                        stack_CacNuocUndo.Push(new OCo(oco1.Dong, oco1.Cot, oco1.ViTri, oco1.SoHuu));
+                        //_LuotDi = oco.SoHuu;
+                        _MangOCo[oco.Dong, oco.Cot].SoHuu = 0;
+                        _BanCo.XoaQuanCo(g, oco.ViTri, sbBG);
+                        _MangOCo[oco1.Dong, oco1.Cot].SoHuu = 0;
+                        _BanCo.XoaQuanCo(g, oco1.ViTri, sbBG);
+                    }
+                    else
+                        return;
+                    
+                }
             } 
             //VeBanCo(g);
             //VeLaiQuanCo(g);
@@ -173,7 +190,7 @@ namespace CoCaro
                 stack_CacNuocDaDi.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
                 //_LuotDi = oco.SoHuu == 1 ? 2 : 1;
                 _MangOCo[oco.Dong, oco.Cot].SoHuu = oco.SoHuu;
-                _BanCo.VeQuanCo(g, oco.ViTri, oco.SoHuu == 1 ? sbBlack : sbWhite);
+                _BanCo.VeQuanCo(g, oco.ViTri, _LuotDi);
                 if (_LuotDi == 1)
                     _LuotDi = 2;
                 else

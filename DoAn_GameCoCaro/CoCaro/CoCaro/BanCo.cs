@@ -12,6 +12,9 @@ namespace CoCaro
         #region Khai báo biến, constructer, getter và setter
         private int _SoDong;
 
+        Image imageO = new Bitmap(Properties.Resources.o);
+        Image imageX = new Bitmap(Properties.Resources.x);
+
         public int SoDong
         {
             get { return _SoDong; }
@@ -48,13 +51,18 @@ namespace CoCaro
                 g.DrawLine(CaroChess.pen, 0, j * OCo._ChieuCao, _SoCot * OCo._ChieuRong, j * OCo._ChieuCao);
             }
         }
-        public void VeQuanCo(Graphics g, Point point, SolidBrush sb)
+        public void VeQuanCo(Graphics g, Point point, int luotDi)
         {
-            g.FillEllipse(sb, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
+            if (luotDi == 1)
+                g.DrawImage(imageX, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
+            else
+                g.DrawImage(imageO, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
+            //g.FillEllipse(sb, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
         }
         public void XoaQuanCo(Graphics g, Point point, SolidBrush sb)
         {
-            g.FillEllipse(sb, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
+            g.FillRectangle(sb, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
+            //g.FillEllipse(sb, point.X + 2, point.Y + 2, OCo._ChieuRong - 4, OCo._ChieuCao - 4);
         }
         #endregion
     }

@@ -8,3 +8,9 @@ C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCar
 C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
 C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.frmCoCaro.resources
 C:\Users\VietThang\Desktop\Project\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.frmAbout.resources
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.exe.config
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.exe
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
+C:\Users\VietThang\Desktop\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.exe.config
+C:\Users\VietThang\Desktop\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.exe
+C:\Users\VietThang\Desktop\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
