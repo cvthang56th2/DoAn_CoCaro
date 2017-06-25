@@ -21,6 +21,8 @@ namespace CoCaro
         #region Khai báo biến, constructer, getter và setter
         public static Pen pen;
         public static SolidBrush sbBG;
+
+        public Label lbl = new Label();
         
         private OCo[,] _MangOCo;
         private BanCo _BanCo;
@@ -46,6 +48,15 @@ namespace CoCaro
             set { _CheDoChoi = value; }
         }
 
+        public int O;
+        public int X;
+        public int P1;
+        public int P2;
+        public int C;
+        public int P;
+        public int m, n;
+
+
         public bool SanSang
         {
             get { return _SanSang; }
@@ -61,6 +72,14 @@ namespace CoCaro
             stack_CacNuocDaDi = new Stack<OCo>();
             stack_CacNuocUndo = new Stack<OCo>();
             _LuotDi = 1;
+            lbl.Text = "X đi trước";
+            O = 0;
+            X = 0;
+            P1 = 0;
+            P2 = 0;
+            C = 0;
+            P = 0;
+            m = n = 0;
         }
         #endregion
         #region Các phương thức
@@ -93,11 +112,17 @@ namespace CoCaro
                 case 1:
                     _MangOCo[Dong, Cot].SoHuu = 1;
                     _BanCo.VeQuanCo(g, _MangOCo[Dong, Cot].ViTri, _LuotDi);
+                    lbl.Text = "Đến lượt O đi";
+                    X++;
+                    if (CheDoChoi == 2)
+                        lbl.Text = "Đến lượt bạn đi";
                     _LuotDi = 2;
                     break;
                 case 2:
                     _MangOCo[Dong, Cot].SoHuu = 2;
                     _BanCo.VeQuanCo(g, _MangOCo[Dong, Cot].ViTri, _LuotDi);
+                    lbl.Text = "Đến lượt X đi";
+                    O++;
                     _LuotDi = 1;
                     break;   
                 default:
@@ -126,6 +151,7 @@ namespace CoCaro
             _CheDoChoi = 1;
             stack_CacNuocDaDi = new Stack<OCo>();
             stack_CacNuocUndo = new Stack<OCo>();
+            O = X = P = C = 0;
             KhoiTaoMangOCo();
             VeBanCo(g);
         }
@@ -137,6 +163,8 @@ namespace CoCaro
             _CheDoChoi = 2;
             stack_CacNuocDaDi = new Stack<OCo>();
             stack_CacNuocUndo = new Stack<OCo>();
+            O = P1 = P2 = 0;
+            X = 1;
             KhoiTaoMangOCo();
             VeBanCo(g);
             KhoiDongComputer(g);
@@ -156,9 +184,17 @@ namespace CoCaro
                     _MangOCo[oco.Dong, oco.Cot].SoHuu = 0;
                     _BanCo.XoaQuanCo(g, oco.ViTri, sbBG);
                     if (_LuotDi == 1)
+                    {
+                        //lbl.Text = "Đến lượt X đi";
+                        O--;
                         _LuotDi = 2;
+                    }
                     else
+                    {
+                        //lbl.Text = "Đến lượt O đi";
+                        X--;
                         _LuotDi = 1;
+                    }
                 }
                 else
                 {
@@ -173,6 +209,9 @@ namespace CoCaro
                         _BanCo.XoaQuanCo(g, oco.ViTri, sbBG);
                         _MangOCo[oco1.Dong, oco1.Cot].SoHuu = 0;
                         _BanCo.XoaQuanCo(g, oco1.ViTri, sbBG);
+                        lbl.Text = "Đến lượt O đi";
+                        O--;
+                        X--;
                     }
                     else
                         return;
@@ -192,9 +231,15 @@ namespace CoCaro
                 _MangOCo[oco.Dong, oco.Cot].SoHuu = oco.SoHuu;
                 _BanCo.VeQuanCo(g, oco.ViTri, _LuotDi);
                 if (_LuotDi == 1)
+                {
                     _LuotDi = 2;
+                    lbl.Text = "Đến lượt O đi";
+                }
                 else
+                {
                     _LuotDi = 1;
+                    lbl.Text = "Đến lượt X đi";
+                }
             }
             //VeBanCo(g);
             //VeLaiQuanCo(g);
@@ -211,20 +256,24 @@ namespace CoCaro
                     break;
                 case KETTHUC.Player:
                     MessageBox.Show("Bạn thắng!", "Trận đấu kết thúc");
+                    P++;
                     break;
                 case KETTHUC.Player1:
                     MessageBox.Show("Người chơi 1 thắng!", "Trận đấu kết thúc");
+                    P1++;
                     break;
                 case KETTHUC.Player2:
                     MessageBox.Show("Người chơi 2 thắng!", "Trận đấu kết thúc");
+                    P2++;
                     break;
                 case KETTHUC.Com:
                     MessageBox.Show("Computer thắng!", "Trận đấu kết thúc");
+                    C++;
                     break;
                 default:
                     break;
             }
-            _SanSang = false;
+            //_SanSang = false;
         }
         public bool KiemTraChienThang()
         {
@@ -327,8 +376,8 @@ namespace CoCaro
         }
         #endregion
         #region AI
-        private long[] MangDiemTanCong = new long[7] {0, 3, 24, 192, 1536, 12288, 98304};
-        private long[] MangDiemPhongNgu = new long[7] {0, 1, 9, 81, 729, 6561, 59049};
+        private long[] MangDiemPhongNgu = new long[7] { 0, 1, 8, 64, 512, 4096, 32768 };
+        private long[] MangDiemTanCong = new long[7] { 0, 2, 16, 128, 1024, 8192, 65536 };
         public void KhoiDongComputer(Graphics g)
         {
             if (stack_CacNuocDaDi.Count == 0)
@@ -370,7 +419,6 @@ namespace CoCaro
         private long DiemTanCong_DuyetDoc(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currDong + Dem < _BanCo.SoDong; Dem++) // Duyệt từ trên xuống, currDong + Dem < _BanCo.SoDong để tránh tràn
@@ -398,15 +446,21 @@ namespace CoCaro
             }
             if (SoQuanDich == 2)
                 return 0;
-            DiemTong -= MangDiemPhongNgu[SoQuanDich + 1] * 2;
-            DiemTC += MangDiemTanCong[SoQuanTa];
-            DiemTong += DiemTC;
+            if (SoQuanDich == 0)
+                DiemTong += MangDiemTanCong[SoQuanTa] * 2;
+            else
+                DiemTong += MangDiemTanCong[SoQuanTa];
+            if (SoQuanTa == 4)
+                DiemTong *= 2;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
             return DiemTong;
         }
         private long DiemTanCong_DuyetNgang(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot; Dem++) //Duyệt từ trái sang phải
@@ -435,15 +489,21 @@ namespace CoCaro
             }
             if (SoQuanDich == 2)
                 return 0;
-            DiemTong -= MangDiemPhongNgu[SoQuanDich + 1] * 2;
-            DiemTC += MangDiemTanCong[SoQuanTa];
-            DiemTong += DiemTC;
+            if (SoQuanDich == 0)
+                DiemTong += MangDiemTanCong[SoQuanTa] * 2;
+            else
+                DiemTong += MangDiemTanCong[SoQuanTa];
+            if (SoQuanTa == 4)
+                DiemTong *= 2;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
             return DiemTong;
         }
         private long DiemTanCong_DuyetCheoNguoc(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong - Dem >= 0; Dem++) // Duyệt trái dưới lên phải trên
@@ -472,15 +532,21 @@ namespace CoCaro
             }
             if (SoQuanDich == 2)
                 return 0;
-            DiemTong -= MangDiemPhongNgu[SoQuanDich + 1] * 2;
-            DiemTC += MangDiemTanCong[SoQuanTa];
-            DiemTong += DiemTC;
+            if (SoQuanDich == 0)
+                DiemTong += MangDiemTanCong[SoQuanTa] * 2;
+            else
+                DiemTong += MangDiemTanCong[SoQuanTa];
+            if (SoQuanTa == 4)
+                DiemTong *= 2;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
             return DiemTong;
         }
         private long DiemTanCong_DuyetCheoXuoi(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemTC = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong + Dem < _BanCo.SoDong; Dem++) // Duyệt trái trên xuống phải dưới
@@ -509,9 +575,16 @@ namespace CoCaro
             }
             if (SoQuanDich == 2)
                 return 0;
-            DiemTong -= MangDiemPhongNgu[SoQuanDich + 1] * 2;
-            DiemTC += MangDiemTanCong[SoQuanTa];
-            DiemTong += DiemTC;
+            if (SoQuanDich == 0)
+                DiemTong += MangDiemTanCong[SoQuanTa] * 2;
+            else
+                DiemTong += MangDiemTanCong[SoQuanTa];
+            if (SoQuanTa == 4)
+                DiemTong *= 2;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
             return DiemTong;
         }
         #endregion
@@ -520,7 +593,6 @@ namespace CoCaro
         private long DiemPhongNgu_DuyetDoc(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemPN = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currDong + Dem < _BanCo.SoDong; Dem++)
@@ -554,8 +626,12 @@ namespace CoCaro
             }
             if (SoQuanTa == 2)
                 return 0;
-            DiemPN += MangDiemPhongNgu[SoQuanDich];
-            DiemTong += DiemPN;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
+            if (SoQuanDich == 4)
+                DiemTong *= 2;
             return DiemTong;
         }
         private long DiemPhongNgu_DuyetNgang(int currDong, int currCot)
@@ -596,14 +672,17 @@ namespace CoCaro
             }
             if (SoQuanTa == 2)
                 return 0;
-            DiemTong += MangDiemPhongNgu[SoQuanDich];
-            DiemTong += DiemPN;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
+            if (SoQuanDich == 4)
+                DiemTong *= 2;
             return DiemTong;
         }
         private long DiemPhongNgu_DuyetCheoNguoc(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemPN = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong - Dem >= 0; Dem++)
@@ -638,14 +717,17 @@ namespace CoCaro
             }
             if (SoQuanTa == 2)
                 return 0;
-            DiemTong += MangDiemPhongNgu[SoQuanTa];
-            DiemTong += DiemPN;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
+            if (SoQuanDich == 4)
+                DiemTong *= 2;
             return DiemTong;
         }
         private long DiemPhongNgu_DuyetCheoXuoi(int currDong, int currCot)
         {
             long DiemTong = 0;
-            long DiemPN = 0;
             int SoQuanTa = 0;
             int SoQuanDich = 0;
             for (int Dem = 1; Dem < 6 && currCot + Dem < _BanCo.SoCot && currDong + Dem < _BanCo.SoDong; Dem++)
@@ -680,8 +762,12 @@ namespace CoCaro
             }
             if (SoQuanTa== 2)
                 return 0;
-            DiemTong += MangDiemPhongNgu[SoQuanTa];
-            DiemTong += DiemPN;
+            if (SoQuanTa == 0)
+                DiemTong += MangDiemPhongNgu[SoQuanDich] * 2;
+            else
+                DiemTong += MangDiemPhongNgu[SoQuanDich];
+            if (SoQuanDich == 4)
+                DiemTong *= 2;
             return DiemTong;
         }
         #endregion

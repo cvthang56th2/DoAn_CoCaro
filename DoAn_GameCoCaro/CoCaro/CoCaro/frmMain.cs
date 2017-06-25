@@ -37,7 +37,11 @@ namespace CoCaro
         {
             lblChuoiChu.Text = "Người chơi lần lượt đặt\nquân cờ vào ô trống.\n\nNgười thắng là người\nđầu tiên có được một\nchuỗi liên tục gồm 5\nquân hàng ngang,\nhoặc dọc, hoặc chéo.\n\nChú ý: Nếu bị chặn \n2 đầu sẽ không\nđược tính thắng!\n\nChọn chế độ chơi ở\ndưới để bắt đầu chơi!";
             timerChuChay.Enabled = true;
-            
+            label4.Text = "O: 0";
+            label5.Text = "X: 0";
+            label6.Visible = false;
+            label7.Visible = false;
+            btnChoiMoi.Enabled = false;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -60,6 +64,8 @@ namespace CoCaro
             }
             if (caroChess.DanhCo(e.X, e.Y, grs))
             {
+                label5.Text = "X : " + caroChess.X;
+                label4.Text = "O : " + caroChess.O;
                 if (caroChess.KiemTraChienThang())
                     caroChess.KetThucTroChoi();
                 else if (caroChess.CheDoChoi == 2)
@@ -69,11 +75,30 @@ namespace CoCaro
                         caroChess.KetThucTroChoi();
                 }
             }
-            
+            label2.Text = caroChess.lbl.Text;
+            if (caroChess.CheDoChoi == 1)
+            {
+                label6.Text = "Player 1 : " + caroChess.P1;
+                label7.Text = "Player 2 : " + caroChess.P2;
+            }
+            else
+            {
+                label6.Text = "Com : " + caroChess.C;
+                label7.Text = "Player : " + caroChess.P;
+            }
         }
 
         private void PvsP(object sender, EventArgs e)
         {
+            btnChoiMoi.Enabled = true;
+            label5.Text = "X: 0";
+            label6.Text = "Player 1 : " + caroChess.P1;
+            label7.Text = "Player 2 : " + caroChess.P2;
+            label6.Visible = true;
+            label7.Visible = true;
+            label2.Text = "Bắt đầu chế độ chơi 2 người - X đi trước";
+            lblCheDoChoi.Location = new Point(12, 594);
+            lblCheDoChoi.Text = "Mode: Player vs Player";
             grs.Clear(pnlBanCo.BackColor);
             btnPlayerVsPlayer.Enabled = false;
             btnPlayerVsCom.Enabled = false;
@@ -84,6 +109,13 @@ namespace CoCaro
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //grs.Clear(pnlBanCo.BackColor);
+            if (caroChess.CheDoChoi == 1)
+            {
+                if (caroChess.LuotDi == 1)
+                    label2.Text = "Đến lượt O đi";
+                else
+                    label2.Text = "Đến lượt X đi";
+            }
             caroChess.Undo(grs);
         }
 
@@ -93,6 +125,15 @@ namespace CoCaro
         }
         private void PvsC_Click(object sender, EventArgs e)
         {
+            btnChoiMoi.Enabled = true;
+            label5.Text = "X : 1";
+            label6.Text = "Com : " + caroChess.C;
+            label7.Text = "Player : " + caroChess.P;
+            label6.Visible = true;
+            label7.Visible = true;
+            lblCheDoChoi.Text = "Mode: Player vs Com";
+            lblCheDoChoi.Location = new Point(12, 594);
+            label2.Text = "Bắt đầu chế độ chơi với máy - Đến lượt bạn đi";
             grs.Clear(pnlBanCo.BackColor);
             btnPlayerVsCom.Enabled = false;
             btnPlayerVsPlayer.Enabled = false;
@@ -102,33 +143,25 @@ namespace CoCaro
 
         private void btnChoiMoi_Click(object sender, EventArgs e)
         {
-            if (caroChess.KiemTraChienThang())
+            label4.Text = "O: 0";
+            if (caroChess.CheDoChoi == 1)
             {
-                grs.Clear(pnlBanCo.BackColor);
+                label2.Text = "Bắt đầu chế độ chơi 2 người - X đi trước";
                 btnPlayerVsCom.Enabled = true;
-                btnPlayerVsPlayer.Enabled = true;
+                grs.Clear(pnlBanCo.BackColor);
                 caroChess.VeBanCo(grs);
-                caroChess.KhoiTaoMangOCo();
-                caroChess.SanSang = false;
+                caroChess.StartPlayerVsPlayer(grs);
+                label5.Text = "X: 0";
             }
             else
             {
-                DialogResult dlr = MessageBox.Show("Bạn có chắc muốn Chơi mới không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dlr == DialogResult.No)
-                {
-                    return;
-                }
-                else
-                {
-                    grs.Clear(pnlBanCo.BackColor);
-                    btnPlayerVsCom.Enabled = true;
-                    btnPlayerVsPlayer.Enabled = true;
-                    caroChess.VeBanCo(grs);
-                    caroChess.KhoiTaoMangOCo();
-                    caroChess.SanSang = false;
-                }
-            }
-            
+                label2.Text = "Bắt đầu chế độ chơi với máy - Đến lượt bạn đi";
+                btnPlayerVsPlayer.Enabled = true;
+                grs.Clear(pnlBanCo.BackColor);
+                caroChess.VeBanCo(grs);
+                caroChess.StartPlayerVsCom(grs);
+                label5.Text = "X: 1";
+            }            
         }
 
         private void frmCoCaro_FormClosing(object sender, FormClosingEventArgs e)

@@ -14,3 +14,10 @@ E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
 C:\Users\VietThang\Desktop\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.exe.config
 C:\Users\VietThang\Desktop\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.exe
 C:\Users\VietThang\Desktop\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.exe
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\bin\Debug\CoCaro.pdb
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.csprojResolveAssemblyReference.cache
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.frmCoCaro.resources
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.frmAbout.resources
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.Properties.Resources.resources
+E:\Lectures\DoAn_CoCaro\DoAn_GameCoCaro\CoCaro\CoCaro\obj\Debug\CoCaro.csproj.GenerateResource.Cache
