@@ -415,7 +415,7 @@ namespace CoCaro
 
             return oCoResult;
         }
-        #region Tấn công
+          #region Tấn công
         private long DiemTanCong_DuyetDoc(int currDong, int currCot)
         {
             long DiemTong = 0;
