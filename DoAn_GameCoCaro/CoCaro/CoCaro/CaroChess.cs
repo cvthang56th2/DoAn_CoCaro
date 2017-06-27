@@ -225,20 +225,41 @@ namespace CoCaro
         {
             if (stack_CacNuocUndo.Count != 0)
             {
-                OCo oco = stack_CacNuocUndo.Pop();
-                stack_CacNuocDaDi.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
-                //_LuotDi = oco.SoHuu == 1 ? 2 : 1;
-                _MangOCo[oco.Dong, oco.Cot].SoHuu = oco.SoHuu;
-                _BanCo.VeQuanCo(g, oco.ViTri, _LuotDi);
-                if (_LuotDi == 1)
+                if (CheDoChoi == 1)
                 {
-                    _LuotDi = 2;
-                    lbl.Text = "Đến lượt O đi";
+                    OCo oco = stack_CacNuocUndo.Pop();
+                    stack_CacNuocDaDi.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
+                    //_LuotDi = oco.SoHuu == 1 ? 2 : 1;
+                    _MangOCo[oco.Dong, oco.Cot].SoHuu = oco.SoHuu;
+                    _BanCo.VeQuanCo(g, oco.ViTri, _LuotDi);
+                    if (_LuotDi == 1)
+                    {
+                        _LuotDi = 2;
+                        lbl.Text = "Đến lượt O đi";
+                        X++;
+                    }
+                    else
+                    {
+                        _LuotDi = 1;
+                        lbl.Text = "Đến lượt X đi";
+                        O++;
+                    }
                 }
                 else
                 {
-                    _LuotDi = 1;
-                    lbl.Text = "Đến lượt X đi";
+                    OCo oco = stack_CacNuocUndo.Pop();
+                    OCo oco1 = stack_CacNuocUndo.Pop();
+                    stack_CacNuocDaDi.Push(new OCo(oco.Dong, oco.Cot, oco.ViTri, oco.SoHuu));
+                    stack_CacNuocDaDi.Push(new OCo(oco1.Dong, oco1.Cot, oco1.ViTri, oco1.SoHuu));
+                    //_LuotDi = oco.SoHuu == 1 ? 2 : 1;
+                    _MangOCo[oco.Dong, oco.Cot].SoHuu = oco.SoHuu;
+                    _MangOCo[oco1.Dong, oco1.Cot].SoHuu = oco1.SoHuu;
+                    _BanCo.VeQuanCo(g, oco.ViTri, 2);
+                    _BanCo.VeQuanCo(g, oco1.ViTri, 1);
+                    _LuotDi = 2;
+                    lbl.Text = "Đến lượt bạn đi";
+                    X++;
+                    O++;
                 }
             }
             //VeBanCo(g);
