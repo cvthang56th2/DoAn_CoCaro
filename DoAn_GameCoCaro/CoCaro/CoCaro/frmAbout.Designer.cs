@@ -42,9 +42,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(25, 26);
+            this.groupBox1.Location = new System.Drawing.Point(12, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(221, 142);
+            this.groupBox1.Size = new System.Drawing.Size(244, 142);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Báo cáo thực tập chuyên ngành";
@@ -67,9 +67,9 @@
             this.label2.ForeColor = System.Drawing.Color.DarkRed;
             this.label2.Location = new System.Drawing.Point(6, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 13);
+            this.label2.Size = new System.Drawing.Size(219, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Đồ án dựa theo trang web học trực tuyến: ";
+            this.label2.Text = "Báo cáo dựa theo trang web học trực tuyến: ";
             // 
             // label1
             // 
