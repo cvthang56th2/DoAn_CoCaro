@@ -387,7 +387,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1253, 740);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1253, 726);
             this.Name = "frmCoCaro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

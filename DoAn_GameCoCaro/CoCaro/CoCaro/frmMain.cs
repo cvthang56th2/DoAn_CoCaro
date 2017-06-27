@@ -37,8 +37,8 @@ namespace CoCaro
         {
             lblChuoiChu.Text = "Người chơi lần lượt đặt\nquân cờ vào ô trống.\n\nNgười thắng là người\nđầu tiên có được một\nchuỗi liên tục gồm 5\nquân hàng ngang,\nhoặc dọc, hoặc chéo.\n\nChú ý: Nếu bị chặn \n2 đầu sẽ không\nđược tính thắng!\n\nChọn chế độ chơi ở\ndưới để bắt đầu chơi!";
             timerChuChay.Enabled = true;
-            label4.Text = "O: 0";
-            label5.Text = "X: 0";
+            label4.Text = "O : 0";
+            label5.Text = "X : 0";
             label6.Visible = false;
             label7.Visible = false;
             btnChoiMoi.Enabled = false;
@@ -91,7 +91,7 @@ namespace CoCaro
         private void PvsP(object sender, EventArgs e)
         {
             btnChoiMoi.Enabled = true;
-            label5.Text = "X: 0";
+            label5.Text = "X : 0";
             label6.Text = "Player 1 : " + caroChess.P1;
             label7.Text = "Player 2 : " + caroChess.P2;
             label6.Visible = true;
@@ -116,11 +116,15 @@ namespace CoCaro
                 else
                     label2.Text = "Đến lượt X đi";
             }
+            label4.Text = "O : " + caroChess.O;
+            label5.Text = "X : " + caroChess.X;
             caroChess.Undo(grs);
         }
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            label4.Text = "O : " + caroChess.O;
+            label5.Text = "X : " + caroChess.X;
             caroChess.Redo(grs);
         }
         private void PvsC_Click(object sender, EventArgs e)
@@ -143,7 +147,7 @@ namespace CoCaro
 
         private void btnChoiMoi_Click(object sender, EventArgs e)
         {
-            label4.Text = "O: 0";
+            label4.Text = "O : 0";
             if (caroChess.CheDoChoi == 1)
             {
                 label2.Text = "Bắt đầu chế độ chơi 2 người - X đi trước";
@@ -151,7 +155,7 @@ namespace CoCaro
                 grs.Clear(pnlBanCo.BackColor);
                 caroChess.VeBanCo(grs);
                 caroChess.StartPlayerVsPlayer(grs);
-                label5.Text = "X: 0";
+                label5.Text = "X : 0";
             }
             else
             {
@@ -160,7 +164,7 @@ namespace CoCaro
                 grs.Clear(pnlBanCo.BackColor);
                 caroChess.VeBanCo(grs);
                 caroChess.StartPlayerVsCom(grs);
-                label5.Text = "X: 1";
+                label5.Text = "X : 1";
             }            
         }
 
